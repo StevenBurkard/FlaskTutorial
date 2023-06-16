@@ -33,7 +33,13 @@ class Car(db.Model):
         return f'{self.year} {self.make} {self.model}'
 
 # Schemas
+class CarSchema(ma.Schema):
+    class Meta:
+        fields = ("id", "make", "model", "year")
 
+car_schema = CarSchema()
+#This is for multiple cars
+cars_schema = CarSchema(many=True)
 
 
 # Resources
