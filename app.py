@@ -47,6 +47,17 @@ class CarListResource(Resource):
     def get(self):
         all_cars = Car.query.all()
         return cars_schema.dump(all_cars)
+    
+    def post(self):
+        print(request)
+        new_car = Car(
+            make= request.json['make'],
+            model=request.json['model'],
+            year=request.json['year']
+        )
+        db.session.add(new_car)
+        db.session.commit()
+        return car_schema.dump(new_car), 201
 
 
 # Routes
